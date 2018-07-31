@@ -14,6 +14,7 @@ type Config struct {
 	Upstreams  []string      `yaml:"upstreams"`
 	ReqTimeout time.Duration `yaml:"requestTimeout"`
 	ResTimeout time.Duration `yaml:"responseTimeout"`
+	UseHTTPS   bool          `yaml:"useHTTPS"`
 }
 
 type serverConf struct {
@@ -35,6 +36,9 @@ func (c *Config) readConfig(file string) *Config {
 	if !c.Server.TCP && !c.Server.UDP {
 		c.Server.TCP = true
 		log.Println("TCP and UDP serving disabled in config by default, force TCP")
+	}
+	if c.UseHTTPS {
+		log.Println("DNS-over-HTTPS mode enabled")
 	}
 	return c
 }

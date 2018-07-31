@@ -1,11 +1,12 @@
 # What is the goal?
 That is a small service to run as a sidecar to secure DNS requests of your service.
+You have 2 options: HTTP-over-TLS or HTTP-over-HTTPS. Check config to setup mode which you want.
 
 # Security concerns
 Certificate validation is enabled, so it more or less secure. Based on a popular 'miekg/dns' library.
 
 # Improvements
-You are welcome to add any improvements like extended logging, DNS-over-HTTPS support, caching, etc.
+You are welcome to add any improvements like extended logging, caching, tests, etc.
 
 # How to $something
 For build:

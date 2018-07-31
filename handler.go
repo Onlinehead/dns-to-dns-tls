@@ -12,14 +12,21 @@ type RequestHandlerConfig struct {
 	upstreams  []string
 	resTimeout time.Duration
 	reqTimeout time.Duration
+	useHTTPS   bool
 }
 
 // MakeHandler return a handler with a proper setup
 func MakeHandler(config *RequestHandlerConfig) func(w dns.ResponseWriter, r *dns.Msg) {
 	return func(w dns.ResponseWriter, r *dns.Msg) {
 		config := config
+		var net string
+		if config.useHTTPS {
+			net = "https"
+		} else {
+			net = "tcp-tls"
+		}
 		clientTLS := dns.Client{
-			Net:          "tcp-tls",
+			Net:          net,
 			ReadTimeout:  config.resTimeout,
 			WriteTimeout: config.reqTimeout,
 		}

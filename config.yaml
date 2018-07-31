@@ -1,10 +1,14 @@
 server:
-  host: 0.0.0.0
-  port: 53
-  tcp: true
-  udp: true
+  host: 0.0.0.0 # Interface to listen
+  port: 53 # Port to listen
+  tcp: true # Enable TCP serving
+  udp: true # Enable UDP serving
 requestTimeout: 1s
 responseTimeout: 1s
-upstreams:
+#useHTTPS: true # Use DNS-over-HTTPS instead of DNS-over-TLS
+#upstreams: # DNS-over-HTTPS upstreams
+#  - https://1.1.1.1/dns-query
+#  - https://1.0.0.1/dns-query
+upstreams: # DNS-over-TLS upstreams
   - 1.1.1.1:853
   - 1.0.0.1:853

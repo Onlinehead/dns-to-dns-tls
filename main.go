@@ -27,6 +27,7 @@ func (s *server) Serve() {
 		upstreams:  s.config.Upstreams,
 		resTimeout: s.config.ResTimeout,
 		reqTimeout: s.config.ReqTimeout,
+		useHTTPS:   s.config.UseHTTPS,
 	}
 	requestHandler := MakeHandler(&handlerConf)
 	dns.HandleFunc(".", requestHandler)
